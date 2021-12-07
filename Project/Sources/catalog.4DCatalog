@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE base SYSTEM "http://www.4d.com/dtd/2007/base.dtd" >
+<base name="ORDA_Aliases" uuid="700C4417063545349B980C72504FA00C" collation_locale="fr">
+	<schema name="DEFAULT_SCHEMA"/>
+	<table name="People" uuid="47C87C6F9175427C9CF6FF50DAAB8EFB" id="4">
+		<field name="ID" uuid="51E4677723374F318452B2A98518F67F" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="name" uuid="A731AAB7BFE542FC8F7E056D818BE645" type="10" limiting_length="255" never_null="true" id="2"/>
+		<primary_key field_name="ID" field_uuid="51E4677723374F318452B2A98518F67F"/>
+		<table_extra output_form="list">
+			<editor_table_info displayable_fields_count="6">
+				<color red="150" green="216" blue="175" alpha="255"/>
+				<coordinates left="163.15234375" top="123.53125" width="120" height="167.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Lessons" uuid="38123D1FA41D4D75A341700AE1BEEC30" id="5">
+		<field name="ID" uuid="38685BEB3E3E4F399CCDD1DD5042725D" type="4" unique="true" autosequence="true" not_null="true" id="1">
+			<field_extra position="1"/>
+		</field>
+		<field name="professorID" uuid="02DF45404DBF46AB9BE59A5BE7F2D3E1" type="4" never_null="true" id="2">
+			<field_extra position="3"/>
+		</field>
+		<field name="studentID" uuid="13B25645EFE748E6839A7D2699A25E88" type="4" never_null="true" id="3">
+			<field_extra position="4"/>
+		</field>
+		<field name="languageID" uuid="6BBD3488A15B4120A725FF8BADDC2E9B" type="4" never_null="true" id="5"/>
+		<primary_key field_name="ID" field_uuid="38685BEB3E3E4F399CCDD1DD5042725D"/>
+		<table_extra output_form="list">
+			<editor_table_info displayable_fields_count="6">
+				<color red="237" green="211" blue="181" alpha="255"/>
+				<coordinates left="361.8359375" top="92.01171875" width="120" height="167.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<table name="Language" uuid="4D88C9F4AA594FB0AAB8BC3768D7AFCC" id="6">
+		<field name="ID" uuid="D19DD9366CE44863B204B63C78AA0382" type="4" unique="true" autosequence="true" not_null="true" id="1"/>
+		<field name="name" uuid="3E285F44111C41F1BEF2C3FF425642D8" type="10" limiting_length="255" never_null="true" id="2"/>
+		<primary_key field_name="ID" field_uuid="D19DD9366CE44863B204B63C78AA0382"/>
+		<table_extra output_form="list">
+			<editor_table_info displayable_fields_count="6">
+				<color red="168" green="206" blue="226" alpha="255"/>
+				<coordinates left="539.10546875" top="154.80078125" width="120" height="167.33203125"/>
+			</editor_table_info>
+		</table_extra>
+	</table>
+	<relation uuid="389998D17C024BE5BCA7BF846D520601" name_Nto1="language" name_1toN="teached" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="6BBD3488A15B4120A725FF8BADDC2E9B" name="languageID">
+				<table_ref uuid="38123D1FA41D4D75A341700AE1BEEC30" name="Lessons"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="D19DD9366CE44863B204B63C78AA0382" name="ID">
+				<table_ref uuid="4D88C9F4AA594FB0AAB8BC3768D7AFCC" name="Language"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="false" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="8F53196B859548D6B4C2A5390375B4D5" name_Nto1="professor" name_1toN="teaching" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="02DF45404DBF46AB9BE59A5BE7F2D3E1" name="professorID">
+				<table_ref uuid="38123D1FA41D4D75A341700AE1BEEC30" name="Lessons"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="51E4677723374F318452B2A98518F67F" name="ID">
+				<table_ref uuid="47C87C6F9175427C9CF6FF50DAAB8EFB" name="People"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<relation uuid="0E99F6684EB046049D1BD96E7C3E554A" name_Nto1="student" name_1toN="learning" auto_load_Nto1="false" auto_load_1toN="false" foreign_key="false" state="1">
+		<related_field kind="source">
+			<field_ref uuid="13B25645EFE748E6839A7D2699A25E88" name="studentID">
+				<table_ref uuid="38123D1FA41D4D75A341700AE1BEEC30" name="Lessons"/>
+			</field_ref>
+		</related_field>
+		<related_field kind="destination">
+			<field_ref uuid="51E4677723374F318452B2A98518F67F" name="ID">
+				<table_ref uuid="47C87C6F9175427C9CF6FF50DAAB8EFB" name="People"/>
+			</field_ref>
+		</related_field>
+		<relation_extra entry_wildchar="false" entry_create="false" choice_field="0" entry_autofill="false">
+			<editor_relation_info via_point_x="-1" via_point_y="-1" prefers_left="true" smartlink="true">
+				<color red="255" green="255" blue="255" alpha="0"/>
+			</editor_relation_info>
+		</relation_extra>
+	</relation>
+	<index kind="regular" unique_keys="true" uuid="175C9E54240248EF84A5C748D0CD455F" type="7">
+		<field_ref uuid="D19DD9366CE44863B204B63C78AA0382" name="ID">
+			<table_ref uuid="4D88C9F4AA594FB0AAB8BC3768D7AFCC" name="Language"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="2CB0C0FDCA6A4548A9CFFE1102B9CAD5" type="7">
+		<field_ref uuid="38685BEB3E3E4F399CCDD1DD5042725D" name="ID">
+			<table_ref uuid="38123D1FA41D4D75A341700AE1BEEC30" name="Lessons"/>
+		</field_ref>
+	</index>
+	<index kind="regular" unique_keys="true" uuid="CB397960F1C04386961DB68D2D8D21A5" type="7">
+		<field_ref uuid="51E4677723374F318452B2A98518F67F" name="ID">
+			<table_ref uuid="47C87C6F9175427C9CF6FF50DAAB8EFB" name="People"/>
+		</field_ref>
+	</index>
+	<base_extra __stringCompHash="icu:68.1.0" __keywordBuildingHash="icu:68.1.0"/>
+</base>
